@@ -13,8 +13,12 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+"""
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+this point to the taskbuster_project folder
+"""
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
@@ -62,7 +66,7 @@ ROOT_URLCONF = 'taskbuster.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -125,4 +129,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/static/'    # this line tells Django to look static files in a folder named static inside each of our apps
+
+"""
+Django will look for static files in a folder named static inside each app
+and into the taskbuster/static folder we just created
+"""
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, "static"),
+# )
