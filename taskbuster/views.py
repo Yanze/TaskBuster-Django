@@ -2,4 +2,4 @@
 from django.shortcuts import render
 
 def home(request):
-    return render(request, "taskbuster/index.html", {})
+    return render(request, "task_buster/index.html", {})

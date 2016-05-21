@@ -19,14 +19,23 @@ this point to the taskbuster_project folder
 """
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+# BASE_DIR = os.path.join(os.path.dirname( __file__ ))
+# BASE_DIR = os.path.dirname(os.path.dirname( __file__ ))
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 't)x3@oidgta%mek_b6z6ouh0tj!)_$!h&_syd0v$5w!c7a6-+p'
-from django.core.exceptions import ImproperlyConfigured
 
+from django.core.exceptions import ImproperlyConfigured
+"""
+we put our secre key inside our virtual environment configuration
+and get the key from the environment by importing it in the base.py
+(if you use Apache this approch doesn't work, then you need to save the key in
+some file and import into the base.py)
+"""
 def get_env_variable(var_name):
     try:
         return os.environ[var_name]
@@ -48,6 +57,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'taskbuster',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -66,7 +76,7 @@ ROOT_URLCONF = 'taskbuster.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, "templates")],
+        'DIRS': 'os.path.dirname(os.path.abspath(__file__))',
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -135,6 +145,6 @@ STATIC_URL = '/static/'    # this line tells Django to look static files in a fo
 Django will look for static files in a folder named static inside each app
 and into the taskbuster/static folder we just created
 """
-# STATICFILES_DIRS = (
-#     os.path.join(BASE_DIR, "static"),
-# )
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)
